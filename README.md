@@ -8,4 +8,4 @@
 1. Copy `config.example.js` to `config.js` and fill it up (Place access key)
 1. Build nuxt `npm run build`
 1. Run nuxt server `npm run start`
-1. Access website by url `http://localhost:8081` 
+1. Access website by url `http://localhost:3000` 

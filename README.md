@@ -5,7 +5,14 @@
 1. Build containers `docker-compose build --no-cache`
 1. Run containers `docker-compose up -d --force-recreate`
 1. Enter docker console `docker exec -it funda_app /bin/bash`
-1. Copy `config.example.js` to `config.js` and fill it up (Place access key)
+1. Copy `config.example.ts` to `config.ts` and fill it up (Place access key)
 1. Build nuxt `npm run build`
 1. Run nuxt server `npm run start`
 1. Access website by url `http://localhost:3000` 
+
+# Notice
+
+## Cors
+Because api provided in test project doesn't have public CORS access (Access-Control-Allow-Origin: *), it is not possible to fetch data directly through browser rest api request.
+
+To bypass this problem, I have created proxy express server `corsBypassServer.ts`, which ignores api server CORS settings.

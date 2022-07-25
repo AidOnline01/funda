@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { accessKey } from '@/config'
+import { accessKey } from '~~/config'
 
 export const API_URL = 'https://api.tvmaze.com'
 

@@ -1,14 +1,16 @@
-import console from 'console'
-import {
-  VuexModule, Module, Mutation, Action
-} from 'vuex-module-decorators'
-import { estateUrl, searchUrl } from '@/api/endpoints'
+import { VuexModule, Module, Mutation, Action } from 'vuex-module-decorators'
 
 import api from '@/api'
 import type Estate from '@/types/Estate'
 
 export interface EstateState {
   estate: Estate
+}
+
+export interface SearchEstateResponse {
+  Objects: Array<{
+    Id: string
+  }>
 }
 
 @Module({ namespaced: true, name: 'estate' })
@@ -22,19 +24,15 @@ export default class EstateModule extends VuexModule implements EstateState {
 
   @Action({ rawError: true })
   async loadEstate (id: string): Promise<Estate> {
-    const url = estateUrl.replace('[id]', id)
-
-    const estate = await api(url) as Estate
+    const estate = await api(`estate/${id}`) as Estate
 
     return estate
   }
 
   @Action({ rawError: true })
   async findEstateId (): Promise<string> {
-    const xml = await api(searchUrl) as string
+    const data = await api('search') as SearchEstateResponse
 
-    console.log(xml)
-
-    return 'test'
+    return data.Objects[0].Id
   }
 }

@@ -3,6 +3,7 @@
     "@nuxtjs/eslint-config-typescript"
   ],
   "rules": {
-    "@typescript-eslint/consistent-type-imports": ["error"]
+    "@typescript-eslint/consistent-type-imports": ["error"],
+    "vue/no-v-html": "off"
   }
 }

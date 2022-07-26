@@ -2,7 +2,7 @@
   <div class="estate-page">
     <div class="container">
       <div v-if="loading" class="loading" data-test-id="loading">
-        Loading...
+        <AlertMessage message="Loading..." type="info" />
       </div>
 
       <div v-else-if="estate" class="estate" data-test-id="estate">
@@ -13,7 +13,7 @@
       </div>
 
       <div v-else class="not-found" data-test-id="not-found">
-        NotFound
+        <AlertMessage message="Estate was not found" type="error" />
       </div>
     </div>
   </div>
@@ -29,6 +29,7 @@ import EstateModule from '@/store/modules/Estate'
 import type Estate from '@/types/Estate'
 import EstateImages from '@/components/estate/EstateImages.vue'
 import EstateInfo from '@/components/estate/EstateInfo.vue'
+import AlertMessage from '@/components/ui/AlertMessage.vue'
 
 const route = useRoute()
 
@@ -73,6 +74,10 @@ export default {
 
 .estate-top__info {
   margin-top: 20px;
+}
+
+.loading, .not-found {
+  padding: 20px 0;
 }
 
 @media (min-width: 768px) {

@@ -3,6 +3,7 @@
 1. Clone repo `git clone https://github.com/AidOnline01/funda.git ./funda`
 1. Enter root directory of the application `cd funda`
 1. Build containers `docker-compose build --no-cache`
+1. Delete `node_modules` folder if present
 1. Run containers `docker-compose up -d --force-recreate`
 1. Enter docker console `docker exec -it funda_app /bin/bash`
 1. Copy `config.example.ts` to `config.ts` and fill it up (Place access key)

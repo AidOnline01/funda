@@ -2,5 +2,7 @@
   "extends": [
     "@nuxtjs/eslint-config-typescript"
   ],
-  "rules": {}
+  "rules": {
+    "@typescript-eslint/consistent-type-imports": ["error"]
+  }
 }

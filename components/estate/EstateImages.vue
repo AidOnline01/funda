@@ -17,7 +17,7 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import type { PropType } from 'vue'
-import Estate from '@/types/Estate'
+import type Estate from '@/types/Estate'
 
 const props = defineProps({
   estate: {
@@ -36,6 +36,10 @@ function setMainImage (image) {
 </script>
 
 <style lang="scss" scoped>
+  .estate-images {
+    max-width: 100%;
+  }
+
   .main-image__inner {
     background-size: cover;
     background-position: center center;
@@ -45,6 +49,7 @@ function setMainImage (image) {
   .images {
     overflow: hidden;
     margin-top: 10px;
+    max-width: 100%;
   }
 
   .images__wrapper {
@@ -71,5 +76,12 @@ function setMainImage (image) {
     background-position: center center;
     border-radius: 10px;
     border: 3px solid transparent;
+  }
+
+  @media (min-width: 900px) {
+    .main-image__inner {
+      padding-bottom: 0;
+      height: 435px;
+    }
   }
 </style>

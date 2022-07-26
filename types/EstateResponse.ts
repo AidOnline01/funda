@@ -10,5 +10,8 @@ export default interface EstateResponse {
   Id: number,
   InternalId: string,
   HoofdFoto?: string,
-  Media?: Media[]
+  Media?: Media[],
+  Makelaar: string,
+  MakelaarId: number,
+  MakelaarTelefoon: string
 }

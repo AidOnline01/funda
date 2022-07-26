@@ -11,6 +11,7 @@ import baseEstate from '@/tests/baseEstate'
 import App from '@/tests/App.vue'
 import type Estate from '@/types/Estate'
 import EstateImages from '@/components/estate/EstateImages.vue'
+import EstateInfo from '@/components/estate/EstateInfo.vue'
 
 async function getWrapper (estate: Estate | boolean, delay = 0): Promise<[VueWrapper, Router]> {
   const router = createRouter({
@@ -69,6 +70,12 @@ describe('EstatePage', () => {
     const [wrapper] = await getWrapper({ ...baseEstate, internalId: 'test-id' })
 
     expect(wrapper.findComponent(EstateImages).exists()).toBe(true)
+  })
+
+  it('should render EstateInfo', async () => {
+    const [wrapper] = await getWrapper({ ...baseEstate, internalId: 'test-id' })
+
+    expect(wrapper.findComponent(EstateInfo).exists()).toBe(true)
   })
 
   it('should show NotFound error', async () => {

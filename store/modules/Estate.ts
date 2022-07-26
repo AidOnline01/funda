@@ -1,5 +1,6 @@
 import { VuexModule, Module, Mutation, Action } from 'vuex-module-decorators'
-import axios, { AxiosError } from 'axios'
+import axios from 'axios'
+import type { AxiosError } from 'axios'
 
 import type EstateResponse from '@/types/EstateResponse'
 import type Estate from '@/types/Estate'

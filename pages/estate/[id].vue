@@ -6,7 +6,10 @@
       </div>
 
       <div v-else-if="estate" class="estate" data-test-id="estate">
-        <EstateImages :estate="estate" />
+        <div class="estate-top">
+          <EstateImages class="estate-top__images" :estate="estate" />
+          <EstateInfo class="estate-top__info" :estate="estate" />
+        </div>
       </div>
 
       <div v-else class="not-found" data-test-id="not-found">
@@ -23,8 +26,9 @@ import { getModule } from 'vuex-module-decorators'
 import { useStore } from 'vuex'
 import type { State } from '@/store'
 import EstateModule from '@/store/modules/Estate'
-import Estate from '@/types/Estate'
+import type Estate from '@/types/Estate'
 import EstateImages from '@/components/estate/EstateImages.vue'
+import EstateInfo from '@/components/estate/EstateInfo.vue'
 
 const route = useRoute()
 
@@ -65,5 +69,26 @@ export default {
 <style lang="scss" scoped>
 .estate {
   padding: 20px 0;
+}
+
+.estate-top__info {
+  margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+  .estate-top {
+    display: flex;
+  }
+
+  .estate-top__images {
+    max-width: calc(100% - 320px);
+  }
+
+  .estate-top__info {
+    width: 300px;
+    flex-shrink: 0;
+    margin-top: 0;
+    margin-left: 20px;
+  }
 }
 </style>

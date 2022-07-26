@@ -25,7 +25,11 @@ const baseResponseEstate: EstateResponse = {
         }
       ]
     }
-  ]
+  ],
+
+  Makelaar: 'Dendy',
+  MakelaarId: 1505,
+  MakelaarTelefoon: '020 025 10 50'
 }
 
 export default baseResponseEstate

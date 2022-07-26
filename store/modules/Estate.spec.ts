@@ -42,6 +42,27 @@ describe('Vuex: Movies', () => {
       expect(id).toBe('test-id')
     })
 
+    it('findEstateId no objects', async () => {
+      const mockResponse: SearchEstateResponse = {
+        Objects: []
+      }
+
+      mockAxios({
+        url: `${apiUrl}/search`,
+        data: mockResponse
+      })
+
+      const id = await module.findEstateId()
+
+      expect(id).toBe(null)
+    })
+
+    it('findEstateId 404', async () => {
+      const id = await module.findEstateId()
+
+      expect(id).toBe(null)
+    })
+
     it('loadEstate', async () => {
       mockAxios({
         url: `${apiUrl}/estate/test-id`,
@@ -51,6 +72,12 @@ describe('Vuex: Movies', () => {
       const estate = await module.loadEstate('test-id')
 
       expect(estate).toEqual(baseEstate)
+    })
+
+    it('loadEstate 404', async () => {
+      const estate = await module.loadEstate('non-existing-id')
+
+      expect(estate).toBe(null)
     })
   })
 

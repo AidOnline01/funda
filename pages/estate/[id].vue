@@ -1,5 +1,60 @@
 <template>
-  <div class="estate">
-    Estate
+  <div class="estate-page">
+    <div v-if="loading" class="loading" data-test-id="loading">
+      Loading...
+    </div>
+
+    <div v-else-if="estate" class="estate" data-test-id="estate">
+      {{ estate }}
+    </div>
+
+    <div v-else class="not-found" data-test-id="not-found">
+      NotFound
+    </div>
   </div>
 </template>
+
+<script lang="ts" setup>
+import { onBeforeRouteUpdate, onBeforeRouteLeave, useRoute } from 'vue-router'
+import { computed, onMounted, watch, ref } from 'vue'
+import { getModule } from 'vuex-module-decorators'
+import { useStore } from 'vuex'
+import type { State } from '@/store'
+import EstateModule from '@/store/modules/Estate'
+import Estate from '@/types/Estate'
+
+const route = useRoute()
+
+const store = useStore<State>()
+
+const estateModule = getModule(EstateModule, store)
+
+const { loadEstate, setEstate } = estateModule
+
+const estate = computed<Estate>(() => estateModule.estate)
+
+onMounted(() => fetchEstate())
+watch(() => route.params.id, () => fetchEstate())
+
+onBeforeRouteUpdate(() => clearState())
+onBeforeRouteLeave(() => clearState())
+
+const loading = ref(true)
+async function fetchEstate () {
+  const loadedEstate = await loadEstate(route.params.id as string)
+
+  setEstate(loadedEstate)
+  loading.value = false
+}
+
+function clearState () {
+  loading.value = true
+  setEstate(null)
+}
+</script>
+
+<script lang="ts">
+export default {
+  name: 'EstatePage'
+}
+</script>

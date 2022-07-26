@@ -8,7 +8,7 @@
 1. Copy `config.example.ts` to `config.ts` and fill it up (Place access key)
 1. Build nuxt `npm run build`
 1. Run nuxt server `npm run start`
-1. Access website by url `http://localhost:3000` 
+1. Access website by url `http://localhost:8300` 
 
 # Notice
 

@@ -7,7 +7,7 @@
     <div class="images">
       <div class="images__wrapper">
         <div v-for="(image, index) in images" :key="index" :class="`image ${image === mainImage ? 'active' : ''}`" data-test-id="image">
-          <div class="image__inner" :style="`background-image: url(${image})`" data-test-id="image-inner" @click="setMainImage(image)" />
+          <LazyImage :src="image" data-test-id="image-inner" class="image__inner" @click="setMainImage(image)" />
         </div>
       </div>
     </div>
@@ -18,6 +18,7 @@
 import { computed, ref } from 'vue'
 import type { PropType } from 'vue'
 import type Estate from '@/types/Estate'
+import LazyImage from '@/components/ui/LazyImage.vue'
 
 const props = defineProps({
   estate: {

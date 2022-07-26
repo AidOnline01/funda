@@ -29,6 +29,10 @@ app.get('/estate/:id', async (request, response) => {
   try {
     const result = await fetch(url)
 
+    if (!result.ok) {
+      throw new Error('Unexpected error')
+    }
+
     response.send(await result.text())
   } catch (error) {
     response.sendStatus(404)

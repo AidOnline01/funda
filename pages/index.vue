@@ -1,7 +1,9 @@
 <template>
   <div class="home">
-    <span v-if="loading" data-test-id="loading">
-      <AlertMessage message="Loading..." type="info" />
+    <span v-if="loading" data-test-id="loading" class="loading">
+      <div class="container">
+        <AlertMessage message="Loading..." type="info" />
+      </div>
     </span>
 
     <router-link v-else :to="`/estate/${id}`" class="estate" data-test-id="estate">
@@ -90,6 +92,10 @@ export default {
       margin: 10px 0;
       position: relative;
     }
+  }
+
+  .loading {
+    padding: 20px 0;
   }
 
   @media (min-width: 768px) {

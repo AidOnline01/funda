@@ -3,6 +3,7 @@ import type { VueWrapper } from '@vue/test-utils'
 import EstateImages from './EstateImages.vue'
 import baseEstate from '@/tests/baseEstate'
 import type Estate from '@/types/Estate'
+import LazyImage from '@/components/ui/LazyImage.vue'
 
 function getWrapper (estate: Estate): VueWrapper {
   const wrapper = shallowMount(EstateImages, {
@@ -19,13 +20,13 @@ describe('EstateImages', () => {
     const wrapper = getWrapper({ ...baseEstate, photos: ['main.png', 'second.png', 'third.png'] })
 
     const mainImageEl = wrapper.find('[data-test-id="main-image-inner"]')
-    const imageEls = wrapper.findAll('[data-test-id="image-inner"]')
+    const imageEls = wrapper.findAllComponents(LazyImage)
 
     expect((mainImageEl.element as HTMLElement).style.backgroundImage).toMatch('main.png')
 
-    expect((imageEls[0].element as HTMLElement).style.backgroundImage).toMatch('main.png')
-    expect((imageEls[1].element as HTMLElement).style.backgroundImage).toMatch('second.png')
-    expect((imageEls[2].element as HTMLElement).style.backgroundImage).toMatch('third.png')
+    expect(imageEls[0].props().src).toMatch('main.png')
+    expect(imageEls[1].props().src).toMatch('second.png')
+    expect(imageEls[2].props().src).toMatch('third.png')
   })
 
   it('should make main image active on thumbnail click', async () => {

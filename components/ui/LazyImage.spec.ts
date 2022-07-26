@@ -2,12 +2,12 @@ import { shallowMount } from '@vue/test-utils'
 import type { VueWrapper } from '@vue/test-utils'
 import LazyImage from './LazyImage.vue'
 
-function getWrapper(src: string): VueWrapper {
+function getWrapper (src: string): VueWrapper {
   const wrapper = shallowMount(LazyImage, {
     propsData: {
       src
     }
-  })
+  } as unknown)
 
   return wrapper
 }

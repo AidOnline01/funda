@@ -1,31 +1,31 @@
-import nock from 'nock';
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
+import nock from 'nock'
+import axios from 'axios'
+import MockAdapter from 'axios-mock-adapter'
 
-nock.disableNetConnect();
+nock.disableNetConnect()
 
-global.mockAdapter = new MockAdapter(axios);
+global.mockAdapter = new MockAdapter(axios)
 
 window.IntersectionObserver = class MockObserver {
-  constructor(callback: IntersectionObserverCallback) {
-    this.callback = callback;
+  constructor (callback: IntersectionObserverCallback) {
+    this.callback = callback
   }
 
-  callback = null;
+  callback = null
 
-  root = null;
+  root = null
 
-  rootMargin = null;
+  rootMargin = null
 
-  thresholds = null;
+  thresholds = null
 
-  disconnect = jest.fn();
+  disconnect = jest.fn()
 
   observe(element: HTMLElement) {
-    this.callback([{ isIntersecting: true, target: element }], this);
+    this.callback([{ isIntersecting: true, target: element }], this)
   }
 
-  unobserve = jest.fn();
+  unobserve = jest.fn()
 
-  takeRecords = jest.fn();
-};
+  takeRecords = jest.fn()
+}

@@ -1,5 +1,10 @@
 <template>
   <div>
+    <Head>
+      <Title>Funda Test Application</Title>
+      <Link rel="icon" href="https://assets.fstatic.nl/master_3941/assets/favicon-32x32.png" type="image/png" />
+    </Head>
+
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

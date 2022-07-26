@@ -1,8 +1,10 @@
 import { VuexModule, Module, Mutation, Action } from 'vuex-module-decorators'
 import axios, { AxiosError } from 'axios'
 
-import api from '@/api'
+import type EstateResponse from '@/types/EstateResponse'
 import type Estate from '@/types/Estate'
+import api from '@/api'
+import processEstateResponse from '@/store/helpers/processEstateResponse'
 
 export interface EstateState {
   estate: Estate
@@ -26,7 +28,9 @@ export default class EstateModule extends VuexModule implements EstateState {
   @Action({ rawError: true })
   async loadEstate (id: string): Promise<Estate | null> {
     try {
-      const estate = await api(`estate/${id}`) as Estate
+      const response = await api(`estate/${id}`) as EstateResponse
+
+      const estate = processEstateResponse(response)
 
       return estate
     } catch (error) {

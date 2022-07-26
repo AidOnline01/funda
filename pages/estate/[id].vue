@@ -1,15 +1,17 @@
 <template>
   <div class="estate-page">
-    <div v-if="loading" class="loading" data-test-id="loading">
-      Loading...
-    </div>
+    <div class="container">
+      <div v-if="loading" class="loading" data-test-id="loading">
+        Loading...
+      </div>
 
-    <div v-else-if="estate" class="estate" data-test-id="estate">
-      {{ estate }}
-    </div>
+      <div v-else-if="estate" class="estate" data-test-id="estate">
+        <EstateImages :estate="estate" />
+      </div>
 
-    <div v-else class="not-found" data-test-id="not-found">
-      NotFound
+      <div v-else class="not-found" data-test-id="not-found">
+        NotFound
+      </div>
     </div>
   </div>
 </template>
@@ -22,6 +24,7 @@ import { useStore } from 'vuex'
 import type { State } from '@/store'
 import EstateModule from '@/store/modules/Estate'
 import Estate from '@/types/Estate'
+import EstateImages from '@/components/estate/EstateImages.vue'
 
 const route = useRoute()
 
@@ -58,3 +61,9 @@ export default {
   name: 'EstatePage'
 }
 </script>
+
+<style lang="scss" scoped>
+.estate {
+  padding: 20px 0;
+}
+</style>

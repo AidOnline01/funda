@@ -6,9 +6,10 @@ import type { SearchEstateResponse } from '@/store/modules/Estate'
 import type { State } from '@/store'
 import mockAxios from '@/tests/mockAxios'
 import { apiUrl } from '@/config'
+import baseResponseEstate from '@/tests/baseResponseEstate'
 import baseEstate from '@/tests/baseEstate'
 
-describe('Vuex: Movies', () => {
+describe('Vuex: Estate', () => {
   let store: Store<State> | null = null
   let module: Estate = null
 
@@ -66,7 +67,7 @@ describe('Vuex: Movies', () => {
     it('loadEstate', async () => {
       mockAxios({
         url: `${apiUrl}/estate/test-id`,
-        data: baseEstate
+        data: baseResponseEstate
       })
 
       const estate = await module.loadEstate('test-id')

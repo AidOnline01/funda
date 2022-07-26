@@ -10,6 +10,7 @@ import mockAxios from '@/tests/mockAxios'
 import baseEstate from '@/tests/baseEstate'
 import App from '@/tests/App.vue'
 import type Estate from '@/types/Estate'
+import EstateImages from '@/components/estate/EstateImages.vue'
 
 async function getWrapper (estate: Estate | boolean, delay = 0): Promise<[VueWrapper, Router]> {
   const router = createRouter({
@@ -59,15 +60,15 @@ async function getWrapper (estate: Estate | boolean, delay = 0): Promise<[VueWra
 
 describe('EstatePage', () => {
   it('should show loading', async () => {
-    const [wrapper] = await getWrapper({ ...baseEstate, Id: 'test-id' }, 1000)
+    const [wrapper] = await getWrapper({ ...baseEstate, internalId: 'test-id' }, 1000)
 
     expect(wrapper.find('[data-test-id="loading"]').exists()).toBe(true)
   })
 
-  it('should render estate', async () => {
-    const [wrapper] = await getWrapper({ ...baseEstate, Id: 'test-id' })
+  it('should render EstateImages', async () => {
+    const [wrapper] = await getWrapper({ ...baseEstate, internalId: 'test-id' })
 
-    expect(wrapper.find('[data-test-id]').exists()).toBe(true)
+    expect(wrapper.findComponent(EstateImages).exists()).toBe(true)
   })
 
   it('should show NotFound error', async () => {
@@ -77,9 +78,9 @@ describe('EstatePage', () => {
   })
 
   it('should show loading on estate change', async () => {
-    const [wrapper, router] = await getWrapper({ ...baseEstate, Id: 'test-id' })
+    const [wrapper, router] = await getWrapper({ ...baseEstate, internalId: 'test-id' })
 
-    const mockSecondEstate: Estate = { ...baseEstate, Id: 'test-id-2' }
+    const mockSecondEstate: Estate = { ...baseEstate, internalId: 'test-id-2' }
 
     mockAxios({
       url: `${apiUrl}/estate/test-id-2`,

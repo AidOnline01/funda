@@ -1,3 +1,5 @@
 export default interface Estate {
-  Id: string
+  id: number,
+  internalId: string,
+  photos: string[]
 }
